@@ -75,9 +75,8 @@ app.use(expressValidator({
 app.use(flash());
 
 app.use(function(req, res, next){
-  res.locals.messages = require('express-messages')(req, res);
-
-  if(req.url == '/'){
+    res.locals.messages= require('express-messages')(req,res)();
+    if(req.url == '/'){
     res.locals.isHome = true;
   }
   next();
@@ -114,7 +113,10 @@ if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     console.error(err.stack);
     res.status(err.status || 500);
-    res.render('layout');
+    res.render('error',{
+        message: err.message,
+        error:err
+    });
   });
 }
 

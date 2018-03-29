@@ -49,7 +49,7 @@ router.post('/signup', function(req, res, next) {
     req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
 
     var errors = req.validationErrors();
-
+    var flag=0;
     if (errors){
           res.render('users/signup', {
               errors: errors,
@@ -102,15 +102,16 @@ router.post('/signup', function(req, res, next) {
         if(type == 'student'){
             User.saveStudent(newUser, newStudent, function(err, user){
                 console.log('Student created');
+                flag=1;
             });
         } else {
           User.saveInstructor(newUser, newInstructor, function(err, user){
               console.log('Instructor created');
+              flag=1;
           });
         }
-
-        req.flash('success', "User added");
-        res.redirect('/');
+            req.flash('Successful', "User added");
+            res.redirect('/');
     }
 });
 
@@ -168,7 +169,10 @@ passport.use(new LocalStrategy(
       });
     }
 ));
-
+// app.get('/sign-in', function(req, res) {
+//         res.render("signin.handlebars", {layout: 'users.handlebars', action: 'Sign in', ***error: req.flash('error')***,
+//                     csrf: 'CSRF token goes here' });
+//     })
 router.get('/logout', function(req, res){
     req.logout();
     req.flash('success', "You have logged out");

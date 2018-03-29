@@ -6,7 +6,6 @@
     <li>{{lesson_title}}</li>
   {{/each}}
 </ul>
-
 {{#if user}}
     <form id="classRegForm" method="post" action="/{{type}}s/classes/register">
         <input type="hidden" name="student_username" value="{{user.username}}">

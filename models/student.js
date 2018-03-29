@@ -29,7 +29,7 @@ var studentSchema = mongoose.Schema({
 var Student =  module.exports = mongoose.model('Student', studentSchema);
 
 
-// Fetch Single Class
+// Fetch Single Student
 module.exports.getStudentByUsername = function(username, callback){
     var query = {username: username};
     Student.findOne(query, callback);
