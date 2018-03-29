@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
       console.log(err);
       res.send(err);
     } else {
-      console.log("Classes Page: " + classes);
+      // console.log("Classes Page: " + classes);
       res.render('classes/index', { "classes": classes});
     }
 });
@@ -37,7 +37,7 @@ router.get('/:id/lessons', function(req, res, next) {
       res.send(err);
     } else {
 
-      console.log('router.get(/:id/lessons... ' + classname);
+      // console.log('router.get(/:id/lessons... ' + classname);
 
       res.render('classes/lessons', { "class": classname});
     }
@@ -57,7 +57,7 @@ router.get('/:id/lessons/:lesson_id', ensureAuthenticated, function(req, res, ne
         for(i=0;i<classname.lessons.length;i++){
             if(classname.lessons[i].lesson_number== req.params.lesson_id){
                 lesson = classname.lessons[i];
-                console.log('lesson ' + lesson);
+                // console.log('lesson ' + lesson);
             }
         }
         res.render('classes/lesson', {

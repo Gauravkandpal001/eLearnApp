@@ -110,7 +110,7 @@ router.post('/signup', function(req, res, next) {
               flag=1;
           });
         }
-            req.flash('Successful', "User added");
+            req.flash('success', "User added !");
             res.redirect('/');
     }
 });
@@ -139,15 +139,15 @@ router.post('/login', passport.authenticate('local', {
 passport.use(new LocalStrategy(
     function(username, password, done){
 
-      console.log("username: " + username);
-      console.log("password: " + password);
+      // console.log("username: " + username);
+      // console.log("password: " + password);
 
       User.getUserByUsername(username, function(err, user){
 
           if (err) throw err;
 
           if(!user){
-            console.log("Unknown user " + username);
+            // console.log("Unknown user " + username);
             return done(null, false, { message: 'Unknown user ' + username });
           }
 
